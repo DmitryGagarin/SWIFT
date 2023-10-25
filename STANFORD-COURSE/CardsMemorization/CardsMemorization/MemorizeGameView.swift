@@ -10,6 +10,8 @@ import SwiftUI
 struct MemorizeGameView: View {
     
     @ObservedObject var viewModel: MemorizeGameViewModel
+    private let aspectRatio: CGFloat = 2/3
+    
     
     var body: some View {
         VStack{
@@ -24,19 +26,19 @@ struct MemorizeGameView: View {
         .padding()
     }
     
-    var cards: some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85), spacing: 0)], spacing: 0){
-            ForEach(viewModel.cards) { card in
-                CardView(card)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .padding(4)
-                    .onTapGesture(perform: {
-                        viewModel.choose(card)
-                    })
-            }
-        }.foregroundColor(Color.orange)
+    
+    private var cards: some View{
+        AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
+            CardView(card)
+                .padding(4)
+                .onTapGesture{
+                    viewModel.choose(card)
+                }
+        }
+        .foregroundColor(Color.orange)
     }
 }
+
 
 
 struct CardView: View {

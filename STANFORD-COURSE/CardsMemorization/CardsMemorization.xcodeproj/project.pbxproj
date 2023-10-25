@@ -16,6 +16,7 @@
 		C12711E32AE58B4000D76DF0 /* CardsMemorizationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12711E22AE58B4000D76DF0 /* CardsMemorizationUITestsLaunchTests.swift */; };
 		C12711F02AE5BB7F00D76DF0 /* MemorizeGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12711EF2AE5BB7F00D76DF0 /* MemorizeGameModel.swift */; };
 		C12711F22AE5BD2C00D76DF0 /* MemorizeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12711F12AE5BD2C00D76DF0 /* MemorizeGameViewModel.swift */; };
+		C12711F42AE9936000D76DF0 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12711F32AE9936000D76DF0 /* AspectVGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C12711E22AE58B4000D76DF0 /* CardsMemorizationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsMemorizationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C12711EF2AE5BB7F00D76DF0 /* MemorizeGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeGameModel.swift; sourceTree = "<group>"; };
 		C12711F12AE5BD2C00D76DF0 /* MemorizeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeGameViewModel.swift; sourceTree = "<group>"; };
+		C12711F32AE9936000D76DF0 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				C12711C42AE58B3D00D76DF0 /* CardsMemorizationApp.swift */,
 				C12711C62AE58B3D00D76DF0 /* MemorizeGameView.swift */,
+				C12711F32AE9936000D76DF0 /* AspectVGrid.swift */,
 				C12711EF2AE5BB7F00D76DF0 /* MemorizeGameModel.swift */,
 				C12711F12AE5BD2C00D76DF0 /* MemorizeGameViewModel.swift */,
 				C12711C82AE58B4000D76DF0 /* Assets.xcassets */,
@@ -268,6 +271,7 @@
 				C12711F22AE5BD2C00D76DF0 /* MemorizeGameViewModel.swift in Sources */,
 				C12711F02AE5BB7F00D76DF0 /* MemorizeGameModel.swift in Sources */,
 				C12711C72AE58B3D00D76DF0 /* MemorizeGameView.swift in Sources */,
+				C12711F42AE9936000D76DF0 /* AspectVGrid.swift in Sources */,
 				C12711C52AE58B3D00D76DF0 /* CardsMemorizationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
