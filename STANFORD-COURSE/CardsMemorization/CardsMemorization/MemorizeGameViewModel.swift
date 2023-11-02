@@ -8,10 +8,12 @@
 import SwiftUI
 
 class MemorizeGameViewModel: ObservableObject {
+    typealias Card = MemorizeGameModel<String>.Card
+    
     private static let emojis = ["👻","😈","🕷️","🎃","🧙","😬","🙀","💀","🕸️","👹","😱","😰"]
     
     private static func createMemoreGame() -> MemorizeGameModel<String>{
-        return MemorizeGameModel(numberOfPairsOfCards: 10) { pairIndex in
+        return MemorizeGameModel(numberOfPairsOfCards: 12) { pairIndex in
             if emojis.indices.contains(pairIndex){
                 return emojis[pairIndex]
             } else {
@@ -19,18 +21,22 @@ class MemorizeGameViewModel: ObservableObject {
             }
         }
     }
-        
+    
     @Published private var model = createMemoreGame()
     
-    var cards: Array<MemorizeGameModel<String>.Card>{
+    var cards: Array<Card>{
         return model.cards
+    }
+    
+    var score: Int{
+        model.score
     }
     
     func shuffle(){
         model.shuffle()
     }
     
-    func choose(_ card: MemorizeGameModel<String>.Card){
+    func choose(_ card: Card){
         model.choose(card)
     }
 }

@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct AspectVGrid<Item: Identifiable, ItemView: View>: View{
-    
-    var items: [Item]
+struct AspectVGrid<Item: Identifiable, ItemView: View>: View {
+    let items: [Item]
     var aspectRatio: CGFloat = 1
-    var content: (Item) -> ItemView
+    let content: (Item) -> ItemView
     
     init(_ items: [Item], aspectRatio: CGFloat, @ViewBuilder content: @escaping (Item) -> ItemView) {
         self.items = items
@@ -21,13 +20,12 @@ struct AspectVGrid<Item: Identifiable, ItemView: View>: View{
     
     var body: some View {
         GeometryReader { geometry in
-            let gridItemSize = gridItemWidthThatFits(
-                count: items.count,
-                size: geometry.size,
-                atAspectRatio: aspectRatio
+            let gridItemSize = gridItemSizeThatFits(
+                availableWidth: geometry.size.width,
+                itemCount: items.count
             )
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 0)], spacing: 0){
-                ForEach(items){ item in
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 0)], spacing: 0) {
+                ForEach(items) { item in
                     content(item)
                         .aspectRatio(aspectRatio, contentMode: .fit)
                 }
@@ -35,25 +33,13 @@ struct AspectVGrid<Item: Identifiable, ItemView: View>: View{
         }
     }
     
-    private func gridItemWidthThatFits(
-        count: Int,
-        size: CGSize,
-        atAspectRatio aspectRatio: CGFloat
-    ) -> CGFloat {
-        let count = CGFloat(count)
-        var columnCount = 1.0
-        repeat {
-            let width = size.width / columnCount
-            let height = width / aspectRatio
-            print(width)
-            print(size.width)
-            let rowCount = (count / columnCount).rounded(.up)
-            if rowCount * height < size.height {
-                return (size.width / columnCount).rounded(.down)
-            }
-            columnCount += 1
-        } while columnCount < count
-        
-        return min(size.width / count, size.height * aspectRatio)*10
+    private func gridItemSizeThatFits(availableWidth: CGFloat, itemCount: Int) -> CGFloat {
+        var columnCount = floor(sqrt(CGFloat(itemCount)))
+        if (items.count == 24){
+            columnCount = 5
+        }
+        let itemWidth = availableWidth / columnCount
+        return itemWidth
     }
 }
+

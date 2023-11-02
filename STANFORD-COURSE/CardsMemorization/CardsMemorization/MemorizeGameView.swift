@@ -11,59 +11,110 @@ struct MemorizeGameView: View {
     
     @ObservedObject var viewModel: MemorizeGameViewModel
     private let aspectRatio: CGFloat = 2/3
-    
+    private let spacing: CGFloat = 4
+    typealias Card = MemorizeGameModel<String>.Card
     
     var body: some View {
         VStack{
-            ScrollView{
-                cards
-                    .animation(.default , value: viewModel.cards)
+            cards
+            HStack{
+                score
+                Spacer()
+                deck
+                    .foregroundColor(.orange)
+                Spacer()
+                shuffle
             }
-            Button("Shuffle"){
-                viewModel.shuffle()
-            }
+            .font(.largeTitle)
         }
+        .onAppear{viewModel.shuffle()}
         .padding()
     }
     
+    private var score: some View{
+        Text("Score: \(viewModel.score)")
+            .animation(nil)
+    }
+    
+    private var shuffle: some View{
+        Button("Shuffle"){
+            withAnimation(.easeInOut){
+                viewModel.shuffle()
+            }
+        }
+    }
     
     private var cards: some View{
         AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
-            CardView(card)
-                .padding(4)
-                .onTapGesture{
-                    viewModel.choose(card)
-                }
+            if isDealt(card){
+                CardView(card)
+                    .matchedGeometryEffect(id: card.id, in: dealingNameSpace)
+                    .transition(.asymmetric(insertion: .identity, removal: .identity))
+                    .padding(spacing)
+                    .overlay(FlyingNumber(number: scoreChange(causedBy: card)))
+                    .zIndex(scoreChange(causedBy: card) != 0 ? 1 : 0)
+                    .onTapGesture{
+                        choose(card)
+                    }
+            }
         }
+        
         .foregroundColor(Color.orange)
     }
-}
-
-
-
-struct CardView: View {
     
-    let card: MemorizeGameModel<String>.Card
+    @State private var dealt = Set<Card.ID>()
     
-    init(_ card: MemorizeGameModel<String>.Card) {
-        self.card = card
+    private func isDealt(_ card: Card) -> Bool {
+        dealt.contains(card.id)
     }
     
-    var body: some View{
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: 12)
-            Group{
-                base.foregroundColor(.white)
-                base.strokeBorder(lineWidth: 3)
-                Text(card.content)
-                    .font(.system(size: 200))
-                    .minimumScaleFactor(0.01)
-                    .aspectRatio(1, contentMode: .fit)
+    private var undealtCards: [Card]{
+        viewModel.cards.filter {!isDealt($0)}
+    }
+    
+    @Namespace private var dealingNameSpace
+    
+    private var deck: some View{
+        ZStack{
+            ForEach(undealtCards) { card in
+                CardView(card)
+                    .matchedGeometryEffect(id: card.id, in: dealingNameSpace)
+                    .transition(.asymmetric(insertion: .identity, removal: .identity))
             }
-            .opacity(card.isFaceUp ? 1 : 0)
-            base.fill().opacity(card.isFaceUp ? 0 : 1)
+            .frame(width: deckWidth, height: deckWidth / aspectRatio)
+            .onTapGesture {
+                deal()
+            }
         }
-        .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
+    }
+    
+    private let dealInterval: TimeInterval = 0.25
+    private let deckWidth: CGFloat = 50
+    
+    private func deal(){
+        var delay: TimeInterval = 0
+        for card in viewModel.cards {
+            withAnimation(.easeInOut(duration: 1).delay(delay)){
+                _ = dealt.insert(card.id)
+            }
+            delay += dealInterval
+        }
+    }
+    
+    private func choose (_ card: Card){
+        withAnimation(.easeInOut(duration:1)){
+            let scoreBeforeChoosing = viewModel.score
+            viewModel.choose(card)
+            let scoreChange = viewModel.score - scoreBeforeChoosing
+            lastScoreChange = (scoreChange, causedByCardId: card.id)
+        }
+    }
+    
+    @State private var lastScoreChange = (0, causedByCardId: "")
+    
+    private func scoreChange(causedBy card: Card) -> Int{
+        let (amount, id) = lastScoreChange
+        return card.id == id ? amount : 0
     }
 }
 
