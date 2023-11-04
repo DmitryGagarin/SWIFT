@@ -4,6 +4,7 @@
 //
 //  Created by Dmitry Fatsievich on 04.11.2023.
 //
+//  Model of the Quiz collection inside Info document
 
 import SwiftUI
 
@@ -13,7 +14,7 @@ struct Question: Identifiable, Codable {
     var option: [String]
     var answer: String
     
-    var tappedAnswer: String = ""
+    var tappedAnswer: String = "" // controls user's taps
     
     enum CodingKeys: CodingKey {
         case question

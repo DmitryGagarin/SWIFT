@@ -4,6 +4,7 @@
 //
 //  Created by Dmitry Fatsievich on 04.11.2023.
 //
+//  Model of the Info document of the Quiz collection
 
 import SwiftUI
 
