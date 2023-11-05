@@ -24,17 +24,12 @@ struct QuestionsView: View {
     var body: some View {
         VStack {
             dismissButton
-            
             Text(info.title)
                 .font(.title)
                 .fontWeight(.semibold)
-            
             progressBar
-            
             showQuestionsView()
-            
             Spacer()
-            
             customButtonView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Fill the entire screen
@@ -57,7 +52,7 @@ struct QuestionsView: View {
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .padding()
+                    .padding(.leading, 15)
             }
             Spacer()
         }
@@ -67,16 +62,16 @@ struct QuestionsView: View {
         GeometryReader {
             let size = $0.size
             ZStack(alignment: .leading) {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(.black.opacity(0.2))
-                Rectangle()
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(Color("Progress"))
                     .frame(width: progress * size.width, alignment: .leading)
             }
             .clipShape(Capsule())
         }
-        .frame(height: 5)
-        .padding(.top, 5)
+        .frame(height: 10)
+        .padding([.leading, .trailing], 10)
     }
     
     private func showQuestionsView() -> some View {
@@ -93,8 +88,7 @@ struct QuestionsView: View {
     }
     
     private func showQuestionCards() -> some View {
-        GeometryReader {
-            _ in
+        VStack {
             ForEach(questions.indices, id: \.self) { index in
                 if currentIndex == index {
                     QuestionView(questions[currentIndex])
@@ -122,18 +116,21 @@ struct QuestionsView: View {
     
     @ViewBuilder
     private func QuestionView(_ question: Question) -> some View {
-        VStack(alignment: .leading, spacing: 15) {
-            showQuestionName(question)
-            VStack(spacing: 12) {
-                showOptionsInTheCard(question)
+        GeometryReader { _ in
+            VStack {
+                showQuestionName(question)
+                VStack(spacing: 12) {
+                    showOptionsInTheCard(question)
+                }
             }
+            .frame(maxWidth: .infinity)
+            .padding(15)
+            .background {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(.white)
+            }
+            .padding(.horizontal, 15)
         }
-        .padding(15)
-        .background {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(.white)
-        }
-        .padding(.horizontal, 15)
     }
     
     private func showQuestionName(_ question: Question) -> some View {

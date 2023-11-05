@@ -12,10 +12,12 @@ struct Info: Codable {
     var title: String
     var peopleAttended: Int
     var rules: [String]
+    var quizNumber: Int
     
     enum CodingKeys: CodingKey {
         case title
         case peopleAttended
         case rules
+        case quizNumber
     }
 }

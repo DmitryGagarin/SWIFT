@@ -19,7 +19,7 @@ struct HomeView: View {
     
     var body: some View {
         if let info = quizInfo { // if info is not nil, view is created
-            VStack(alignment: .leading, spacing: 20) {
+            VStack {
                 TopHomeViewInfo(info)
                 
                 if !info.rules.isEmpty {
@@ -27,29 +27,36 @@ struct HomeView: View {
                 }
                 
                 Spacer()
-                CustomButton(title: "Start Test", onClick: {
+                CustomButton(title: "Start Quiz", onClick: {
                     startQuiz.toggle()
                 })
             }
-            .padding(.leading, 20)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //            .padding(.leading, 20)
+            //            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fullScreenCover(isPresented: $startQuiz) {
                 QuestionsView(info: info, questions: questions) {
                     quizInfo?.peopleAttended += 1
                 }
             }
         } else {
-            downloadingView // if info == nil then i see ProgressView() and try to fetch data again
+            downloadingView // if info == nil then user sees ProgressView() and tries to fetch data again
         }
     }
     
     private func TopHomeViewInfo(_ info: Info) -> some View {
-        VStack {
+        VStack (alignment: .leading) { // makes all view .leading
             Text(info.title)
                 .font(.title)
                 .fontWeight(.semibold)
-            CustomLabel("list.bullet.rectangle.portrait", "\(questions.count)", "Multiple Choice Questions")
-            CustomLabel("person", "\(info.peopleAttended)", "Attended the exercise")
+                .frame(maxWidth: .infinity, alignment: .center) // center the title
+            
+            VStack(alignment: .leading) { // makes labels .leading
+                CustomLabel("list.bullet.rectangle.portrait", "\(questions.count)", "Multiple Choice Questions")
+                CustomLabel("person", "\(info.peopleAttended)", "Attended the exercise")
+                CustomLabel("number", "\(info.quizNumber)", "There are \(info.quizNumber) quizes")
+            }
+            .padding(.leading, 20)// add some space between border and labels
+            .padding(.bottom, 5)
             Divider()
         }
     }
@@ -58,7 +65,7 @@ struct HomeView: View {
         VStack {
             ProgressView()
             Text("Please wait")
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(.black)
         }
         .task {
@@ -83,13 +90,13 @@ struct HomeView: View {
                 }
             }
         }
+        .padding([.top, .leading, .trailing], 20)
     }
     
     private var showRulesText: some View {
         Text("Before you start")
-            .font(.title3)
+            .font(.title2)
             .fontWeight(.bold)
-            .padding(.bottom, 12)
     }
     
     private var showRulesDots: some View {
@@ -157,32 +164,28 @@ struct HomeView: View {
 struct CustomButton: View {
     var title: String
     var onClick: () -> ()
+    
     var body: some View {
-        HStack {
-            Spacer()
-            Button {
-                onClick()
-            } label: {
+        ZStack {
+            Color("Pinkie")
+                .ignoresSafeArea()
+                .frame(height: 40)
+            Button(action: onClick) {
                 CustomButtonLabel(title)
             }
-            .padding([.bottom, .horizontal], -15)
-            .buttonStyle(PlainButtonStyle())
-            Spacer()
+            .frame(maxWidth: .infinity) // Make the button fill the screen width
         }
+        .foregroundColor(.white)
     }
     
     private func CustomButtonLabel(_ title: String) -> some View {
-        Text(title)
-            .font(.title3)
-            .fontWeight(.semibold)
-            .padding(.top, 15)
-            .padding(.bottom, 10)
-            .foregroundColor(.white)
-            .background {
-                Rectangle()
-                    .fill(Color("Pinkie"))
-                    .ignoresSafeArea()
-            }
+        HStack {
+            Spacer()
+            Text(title)
+                .font(.title2)
+                .fontWeight(.semibold)
+            Spacer()
+        }
     }
 }
 
