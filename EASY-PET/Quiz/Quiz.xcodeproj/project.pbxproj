@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11D8AB52AFA62320016A552 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AB42AFA62320016A552 /* AddQuestionView.swift */; };
+		C11D8AB82AFA69C20016A552 /* RegistrationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AB72AFA69C20016A552 /* RegistrationViewViewModel.swift */; };
+		C11D8ABA2AFA6CC00016A552 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AB92AFA6CC00016A552 /* User.swift */; };
+		C11D8ABC2AFA6D6B0016A552 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8ABB2AFA6D6B0016A552 /* RegistrationView.swift */; };
+		C11D8ABE2AFA6EEB0016A552 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */; };
+		C11D8AC12AFA73400016A552 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC02AFA73400016A552 /* Extensions.swift */; };
+		C11D8AC32AFA74390016A552 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */; };
 		C12A06D12AF699ED004BCD12 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A06D02AF699ED004BCD12 /* QuestionsView.swift */; };
+		C12A06D32AF84952004BCD12 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A06D22AF84951004BCD12 /* AccountView.swift */; };
 		C1C981172AF6591400E21C45 /* QuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C981162AF6591400E21C45 /* QuizApp.swift */; };
 		C1C981192AF6591400E21C45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C981182AF6591400E21C45 /* ContentView.swift */; };
 		C1C9811B2AF6591500E21C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C9811A2AF6591500E21C45 /* Assets.xcassets */; };
@@ -42,7 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C11D8AB42AFA62320016A552 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
+		C11D8AB72AFA69C20016A552 /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
+		C11D8AB92AFA6CC00016A552 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C11D8ABB2AFA6D6B0016A552 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
+		C11D8AC02AFA73400016A552 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		C12A06D02AF699ED004BCD12 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
+		C12A06D22AF84951004BCD12 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		C1C981132AF6591400E21C45 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C981162AF6591400E21C45 /* QuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizApp.swift; sourceTree = "<group>"; };
 		C1C981182AF6591400E21C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,9 +104,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C11D8AB62AFA69A50016A552 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C11D8AB72AFA69C20016A552 /* RegistrationViewViewModel.swift */,
+				C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */,
+				C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C11D8ABF2AFA73320016A552 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C11D8AC02AFA73400016A552 /* Extensions.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		C1C9810A2AF6591400E21C45 = {
 			isa = PBXGroup;
 			children = (
+				C11D8ABF2AFA73320016A552 /* Other */,
+				C11D8AB62AFA69A50016A552 /* ViewModel */,
 				C1C9814D2AF663F300E21C45 /* Model */,
 				C1C9814C2AF663E400E21C45 /* View */,
 				C1C981152AF6591400E21C45 /* Quiz */,
@@ -153,6 +189,9 @@
 			children = (
 				C1C9814E2AF6640B00E21C45 /* HomeView.swift */,
 				C12A06D02AF699ED004BCD12 /* QuestionsView.swift */,
+				C12A06D22AF84951004BCD12 /* AccountView.swift */,
+				C11D8AB42AFA62320016A552 /* AddQuestionView.swift */,
+				C11D8ABB2AFA6D6B0016A552 /* RegistrationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +201,7 @@
 			children = (
 				C1C981502AF6641D00E21C45 /* Info.swift */,
 				C1C981522AF6646D00E21C45 /* Question.swift */,
+				C11D8AB92AFA6CC00016A552 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,11 +345,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11D8ABC2AFA6D6B0016A552 /* RegistrationView.swift in Sources */,
 				C1C981532AF6646D00E21C45 /* Question.swift in Sources */,
+				C11D8AC32AFA74390016A552 /* MainViewViewModel.swift in Sources */,
 				C1C9814F2AF6640B00E21C45 /* HomeView.swift in Sources */,
 				C12A06D12AF699ED004BCD12 /* QuestionsView.swift in Sources */,
 				C1C981512AF6641E00E21C45 /* Info.swift in Sources */,
+				C11D8ABE2AFA6EEB0016A552 /* ProfileViewViewModel.swift in Sources */,
+				C11D8AB82AFA69C20016A552 /* RegistrationViewViewModel.swift in Sources */,
+				C11D8AB52AFA62320016A552 /* AddQuestionView.swift in Sources */,
+				C11D8AC12AFA73400016A552 /* Extensions.swift in Sources */,
+				C12A06D32AF84952004BCD12 /* AccountView.swift in Sources */,
 				C1C981192AF6591400E21C45 /* ContentView.swift in Sources */,
+				C11D8ABA2AFA6CC00016A552 /* User.swift in Sources */,
 				C1C981172AF6591400E21C45 /* QuizApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

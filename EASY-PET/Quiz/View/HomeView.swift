@@ -15,11 +15,13 @@ struct HomeView: View {
     @State private var quizInfo: Info? // create object of optional Info
     @State private var questions: [Question] = [] // crearte object of array of Questions
     @State private var startQuiz: Bool = false // contols whether quiz is started
+    @State private var showAccount: Bool = false
     @AppStorage("log_status") private var logStatus: Bool = true // checks whether user is logged by reading UserDefaults
     
     var body: some View {
         if let info = quizInfo { // if info is not nil, view is created
             VStack {
+                
                 TopHomeViewInfo(info)
                 
                 if !info.rules.isEmpty {
@@ -30,21 +32,23 @@ struct HomeView: View {
                 CustomButton(title: "Start Quiz", onClick: {
                     startQuiz.toggle()
                 })
+                
             }
-            //            .padding(.leading, 20)
-            //            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
             .fullScreenCover(isPresented: $startQuiz) {
                 QuestionsView(info: info, questions: questions) {
                     quizInfo?.peopleAttended += 1
                 }
+                
             }
+            
         } else {
             downloadingView // if info == nil then user sees ProgressView() and tries to fetch data again
         }
     }
     
     private func TopHomeViewInfo(_ info: Info) -> some View {
-        VStack (alignment: .leading) { // makes all view .leading
+        VStack(alignment: .leading) { // makes all view .leading
             Text(info.title)
                 .font(.title)
                 .fontWeight(.semibold)
