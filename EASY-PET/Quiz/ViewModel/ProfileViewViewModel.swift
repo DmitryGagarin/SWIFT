@@ -12,27 +12,47 @@ import Foundation
 class ProfileViewViewModel: ObservableObject{
     
     @Published var user: User? = nil
+    init(){}
     
     func fetchUser(){
-        guard let userId = Auth.auth().currentUser?.uid else{
-            return
-        }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        print("user id\(userId)")
         
         let db = Firestore.firestore()
+        let dbCheck = db.collection("users")
+            
+        print(db)
+        print("swift huesos 1")
         
-        print("DataBase is okey!!!")
+        print("EBAN BAZA \(db.collection("users").document(userId))")
         
-        db.collection("users").document(userId).getDocument{ [self]
-            snapshot, error in
-            guard let data = snapshot?.data(), error == nil else{
-                return
+        dbCheck.document(userId).getDocument { [self] snapshot, error in
+            print ("cum shot \(snapshot!)")
+            if let error = error {
+                    print("Error fetching user data: \(error.localizedDescription)")
+            } else {
+                if snapshot!.exists == true {
+                    print("The 'users' collection exists")
+                } else {
+                    print("The 'users' collection does not exist")
+                }
             }
             
+            print(snapshot?.data() ?? "PUPUPU")
+            
+            guard let data = snapshot?.data() else { return
+                print("No data or error in Firestore fetch")
+            }
+            
+            print("EBALAI")
+
+            
             DispatchQueue.main.async {
-                self.user = User(id: data["id"] as? String ?? "",
-                                 name: data["name"] as? String ?? "",
-                                 surname: data["surname"] as? String ?? "",
-                                 email: data["email"] as? String ?? ""
+                self.user = User(email: data["email"] as? String ?? "",
+                                  id: data["id"] as? String ?? "",
+                                  name: data["name"] as? String ?? "",
+                                  surname: data["surname"] as? String ?? ""
                 )
             }
         }
@@ -45,9 +65,4 @@ class ProfileViewViewModel: ObservableObject{
             print("error while loggingOut: \(error)")
         }
     }
-    
-    
-    
-    init(){}
-    
 }

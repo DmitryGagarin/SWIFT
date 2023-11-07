@@ -10,7 +10,8 @@ import SwiftUI
 struct RegistrationView: View {
     
     @StateObject var viewModel = RegistrationViewViewModel()
-   
+    @State private var isRegistration: Bool = false
+    
     var body: some View {
         VStack {
             Form {
@@ -23,16 +24,19 @@ struct RegistrationView: View {
                 TextField("Your email", text: $viewModel.email)
                     .autocorrectionDisabled()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                SecureField("Your password", text: $viewModel.password)
+                TextField("Your password", text: $viewModel.password)
                     .autocorrectionDisabled()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button {
+                Spacer()
+                
+                Button("Create account") {
+                    print("account created")
                     viewModel.registration()
-                    print("clicked")
-                } label: {
-                    Text("Create Account")
                 }
+                
             }
+            .scrollContentBackground(.hidden)
+            .offset(y: -20)
         }
     }
 }

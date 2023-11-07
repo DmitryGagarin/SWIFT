@@ -4,10 +4,6 @@
 //
 //  Created by Dmitry Fatsievich on 04.11.2023.
 //
-//  TODO: tabview with quiz tab and account tab
-//  TODO: ability to upload guizes and questions
-//  TODO: add collection of different quizes
-//  TODO: add statisctics to the Home View
 
 import SwiftUI
 
@@ -17,23 +13,29 @@ struct ContentView: View {
     
     var body: some View {
         if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
+            Button {
+                ProfileViewViewModel().logOut()
+            } label: {
+                Text("gfjisodfosdf")
+            }
             TabView {
                 HomeView()
                     .padding()
                     .tabItem {
                         Label("Quiz", systemImage: "play")
                     }
-                AccountView()
+                ProfileView()
                     .padding()
                     .tabItem {
                         Label("Account", systemImage: "person")
                     }
             }
         } else {
-            RegistrationView()
+            LoginView()
         }
     }
 }
+
 
 #Preview {
     ContentView()

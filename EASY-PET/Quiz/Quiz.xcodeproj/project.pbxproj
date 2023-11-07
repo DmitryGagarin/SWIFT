@@ -14,8 +14,10 @@
 		C11D8ABE2AFA6EEB0016A552 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */; };
 		C11D8AC12AFA73400016A552 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC02AFA73400016A552 /* Extensions.swift */; };
 		C11D8AC32AFA74390016A552 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */; };
+		C11D8AC52AFABA560016A552 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC42AFABA560016A552 /* LoginView.swift */; };
+		C11D8AC92AFABCCF0016A552 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D8AC82AFABCCF0016A552 /* LoginViewViewModel.swift */; };
 		C12A06D12AF699ED004BCD12 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A06D02AF699ED004BCD12 /* QuestionsView.swift */; };
-		C12A06D32AF84952004BCD12 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A06D22AF84951004BCD12 /* AccountView.swift */; };
+		C12A06D32AF84952004BCD12 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A06D22AF84951004BCD12 /* ProfileView.swift */; };
 		C1C981172AF6591400E21C45 /* QuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C981162AF6591400E21C45 /* QuizApp.swift */; };
 		C1C981192AF6591400E21C45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C981182AF6591400E21C45 /* ContentView.swift */; };
 		C1C9811B2AF6591500E21C45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C9811A2AF6591500E21C45 /* Assets.xcassets */; };
@@ -57,8 +59,10 @@
 		C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		C11D8AC02AFA73400016A552 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		C11D8AC42AFABA560016A552 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C11D8AC82AFABCCF0016A552 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		C12A06D02AF699ED004BCD12 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
-		C12A06D22AF84951004BCD12 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		C12A06D22AF84951004BCD12 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C1C981132AF6591400E21C45 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C981162AF6591400E21C45 /* QuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizApp.swift; sourceTree = "<group>"; };
 		C1C981182AF6591400E21C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				C11D8AB72AFA69C20016A552 /* RegistrationViewViewModel.swift */,
 				C11D8ABD2AFA6EEB0016A552 /* ProfileViewViewModel.swift */,
 				C11D8AC22AFA74390016A552 /* MainViewViewModel.swift */,
+				C11D8AC82AFABCCF0016A552 /* LoginViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -189,9 +194,10 @@
 			children = (
 				C1C9814E2AF6640B00E21C45 /* HomeView.swift */,
 				C12A06D02AF699ED004BCD12 /* QuestionsView.swift */,
-				C12A06D22AF84951004BCD12 /* AccountView.swift */,
+				C12A06D22AF84951004BCD12 /* ProfileView.swift */,
 				C11D8AB42AFA62320016A552 /* AddQuestionView.swift */,
 				C11D8ABB2AFA6D6B0016A552 /* RegistrationView.swift */,
+				C11D8AC42AFABA560016A552 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,6 +354,8 @@
 				C11D8ABC2AFA6D6B0016A552 /* RegistrationView.swift in Sources */,
 				C1C981532AF6646D00E21C45 /* Question.swift in Sources */,
 				C11D8AC32AFA74390016A552 /* MainViewViewModel.swift in Sources */,
+				C11D8AC92AFABCCF0016A552 /* LoginViewViewModel.swift in Sources */,
+				C11D8AC52AFABA560016A552 /* LoginView.swift in Sources */,
 				C1C9814F2AF6640B00E21C45 /* HomeView.swift in Sources */,
 				C12A06D12AF699ED004BCD12 /* QuestionsView.swift in Sources */,
 				C1C981512AF6641E00E21C45 /* Info.swift in Sources */,
@@ -355,7 +363,7 @@
 				C11D8AB82AFA69C20016A552 /* RegistrationViewViewModel.swift in Sources */,
 				C11D8AB52AFA62320016A552 /* AddQuestionView.swift in Sources */,
 				C11D8AC12AFA73400016A552 /* Extensions.swift in Sources */,
-				C12A06D32AF84952004BCD12 /* AccountView.swift in Sources */,
+				C12A06D32AF84952004BCD12 /* ProfileView.swift in Sources */,
 				C1C981192AF6591400E21C45 /* ContentView.swift in Sources */,
 				C11D8ABA2AFA6CC00016A552 /* User.swift in Sources */,
 				C1C981172AF6591400E21C45 /* QuizApp.swift in Sources */,
@@ -532,7 +540,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -570,7 +578,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
