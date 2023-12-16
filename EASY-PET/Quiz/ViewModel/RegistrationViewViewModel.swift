@@ -19,7 +19,7 @@ class RegistrationViewViewModel: ObservableObject {
     init(){}
     
     func registration() {
-        guard validation() else { return }
+        //guard validation() else { return }
         
         Auth.auth().createUser(withEmail: email, password: password){ [weak self] result, error in
             guard let userId = result?.user.uid else { return }
@@ -38,12 +38,13 @@ class RegistrationViewViewModel: ObservableObject {
         db.collection("users")
             .document(id)
             .setData(newUser.asDictionary())
+        print("check registration: \(db.collection("users").document(id))")
     }
     
     private func validation() -> Bool {
-        guard !name.trimmingCharacters(in: .whitespaces).isEmpty,
-              !email.trimmingCharacters(in: .whitespaces).isEmpty,
-              !password.trimmingCharacters(in: .whitespaces).isEmpty else { return false }
+        //guard !name.trimmingCharacters(in: .whitespaces).isEmpty,
+        //      !email.trimmingCharacters(in: .whitespaces).isEmpty,
+        //      !password.trimmingCharacters(in: .whitespaces).isEmpty else { return false }
         
         //guard email.contains("@") && email.contains(".") else {return false}
         

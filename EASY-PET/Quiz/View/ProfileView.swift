@@ -16,7 +16,6 @@ struct ProfileView: View {
                 if let user = viewModel.user {
                     profile(user: user)
                 } else {
-                    Text("User is nil in ProfileView")
                     ProgressView()
                     Text("Please wait")
                 }
@@ -24,7 +23,6 @@ struct ProfileView: View {
             .navigationTitle("Your account")
         }
         .onAppear {
-            print("Profile has appered")
             viewModel.fetchUser()
         }
     }

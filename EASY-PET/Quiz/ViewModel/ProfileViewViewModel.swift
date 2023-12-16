@@ -15,41 +15,38 @@ class ProfileViewViewModel: ObservableObject{
     init(){}
     
     func fetchUser(){
-        guard let userId = Auth.auth().currentUser?.uid else { return }
+        guard let users = Auth.auth().currentUser?.uid else { return }
         
-        print("user id\(userId)")
+        print(Auth.auth().currentUser?.uid ?? "impossible to get user")
         
+        print("check if user id exists: \(users)") // works
+                
         let db = Firestore.firestore()
-        let dbCheck = db.collection("users")
-            
-        print(db)
-        print("swift huesos 1")
         
-        print("EBAN BAZA \(db.collection("users").document(userId))")
+        print("check id database exists: \(db)") // works
         
-        dbCheck.document(userId).getDocument { [self] snapshot, error in
-            print ("cum shot \(snapshot!)")
+        db.collection("users").document(users).getDocument { [weak self] snapshot, error in
             if let error = error {
-                    print("Error fetching user data: \(error.localizedDescription)")
-            } else {
-                if snapshot!.exists == true {
-                    print("The 'users' collection exists")
-                } else {
-                    print("The 'users' collection does not exist")
-                }
+                print("Error fetching document: \(error.localizedDescription)")
+                return
             }
-            
-            print(snapshot?.data() ?? "PUPUPU")
-            
-            guard let data = snapshot?.data() else { return
-                print("No data or error in Firestore fetch")
-            }
-            
-            print("EBALAI")
 
+            print("db.collection")
+            print(db.collection("users"))
+            print("db.collection.document")
+            print(db.collection("users").document(users))
             
+            guard let snapshot = snapshot, snapshot.exists else {
+                print("Document does not exist")
+                return
+            }
+
+            let data = snapshot.data() ?? [:] // Provide a default empty dictionary if data is nil
+
+            print("Data retrieved: \(data)")
+
             DispatchQueue.main.async {
-                self.user = User(email: data["email"] as? String ?? "",
+                self?.user = User(email: data["email"] as? String ?? "",
                                   id: data["id"] as? String ?? "",
                                   name: data["name"] as? String ?? "",
                                   surname: data["surname"] as? String ?? ""

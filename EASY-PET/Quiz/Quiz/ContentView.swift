@@ -16,7 +16,7 @@ struct ContentView: View {
             Button {
                 ProfileViewViewModel().logOut()
             } label: {
-                Text("gfjisodfosdf")
+                Text("Log out")
             }
             TabView {
                 HomeView()

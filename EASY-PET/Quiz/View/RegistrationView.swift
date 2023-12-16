@@ -30,7 +30,6 @@ struct RegistrationView: View {
                 Spacer()
                 
                 Button("Create account") {
-                    print("account created")
                     viewModel.registration()
                 }
                 
